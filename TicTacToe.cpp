@@ -1,7 +1,7 @@
 #include <iostream>
-// #include <windows.h>
 using namespace std;
 
+// Function to check whether a player has won or not
 bool checkWin(char arr[3][3], string oponent)
 {
     cout << endl
@@ -61,6 +61,7 @@ bool checkWin(char arr[3][3], string oponent)
         return false;
     }
 }
+// Function to print the array in form of a tic tac toe board
 void printArray(char arr[3][3])
 {
     for (int i = 0; i < 3; i++)
@@ -82,6 +83,7 @@ void printArray(char arr[3][3])
     cout << endl
          << endl;
 }
+// Function to let the user pick a position
 void userPick(char arr[3][3], char user)
 {
     int row = 1, col = 1;
@@ -101,6 +103,7 @@ void userPick(char arr[3][3], char user)
         arr[row - 1][col - 1] = user;
     }
 }
+// function to check whether a player is about to win (used by computer)
 string checkPosition(char arr[3][3], char user)
 {
     if ((arr[0][0] == arr[0][1]) && (arr[0][0] == user) && (arr[0][2] == ' '))
@@ -200,6 +203,7 @@ string checkPosition(char arr[3][3], char user)
         return "none";
     }
 }
+// Function to let the computer pick a position
 void computerPick(char arr[3][3], char user, char opp)
 {
     if (checkPosition(arr, user) != "none")
@@ -253,6 +257,7 @@ void computerPick(char arr[3][3], char user, char opp)
         arr[2][1] = user;
     }
 }
+// Function to check whether the game is a draw
 bool draw(char arr[3][3])
 {
     int count = 0;
