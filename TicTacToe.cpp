@@ -6,7 +6,36 @@ bool checkWin(char arr[3][3], string oponent)
 {
     cout << endl
          << endl;
-    if (((arr[0][0] == arr[0][1] && arr[0][0] == arr[0][2]) || (arr[0][0] == arr[1][0] && arr[0][0] == arr[2][0])) && (arr[0][0] != ' '))
+    for (int i = 0; i < 3; i++)
+    {
+        if (arr[i][0] == arr[i][1] && arr[i][0] == arr[i][2] && arr[i][0] != ' ')
+        {
+            if (arr[i][0] == 'X')
+            {
+                cout << "P1 wins" << endl;
+            }
+            else
+            {
+                cout << oponent << " wins" << endl;
+            }
+
+            return true;
+        }
+        else if (arr[0][i] == arr[1][i] && arr[0][i] == arr[2][i] && arr[0][i] != ' ')
+        {
+            if (arr[0][i] == 'X')
+            {
+                cout << "P1 wins" << endl;
+            }
+            else
+            {
+                cout << oponent << " wins" << endl;
+            }
+
+            return true;
+        }
+    }
+    if (arr[0][0] == arr[1][1] && arr[0][0] == arr[2][2] && arr[0][0] != ' ')
     {
         if (arr[0][0] == 'X')
         {
@@ -19,47 +48,65 @@ bool checkWin(char arr[3][3], string oponent)
 
         return true;
     }
-    else if (((arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2]) || (arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1])) && (arr[1][1] != ' '))
-    {
-        if (arr[1][1] == 'X')
-        {
-            cout << "P1 wins" << endl;
-        }
-        else
-        {
-            cout << oponent << " wins" << endl;
-        }
-
-        return true;
-    }
-    else if (((arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2]) || (arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2])) && (arr[2][2] != ' '))
-    {
-        if (arr[2][2] == 'X')
-        {
-            cout << "P1 wins" << endl;
-        }
-        else
-        {
-            cout << oponent << " wins" << endl;
-        }
-        return true;
-    }
-    else if (((arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2]) || (arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0])) && (arr[1][1] != ' '))
-    {
-        if (arr[1][1] == 'X')
-        {
-            cout << "P1 wins" << endl;
-        }
-        else
-        {
-            cout << oponent << " wins" << endl;
-        }
-        return true;
-    }
     else
     {
         return false;
     }
+
+    // if (((arr[0][0] == arr[0][1] && arr[0][0] == arr[0][2]) || (arr[0][0] == arr[1][0] && arr[0][0] == arr[2][0])) && (arr[0][0] != ' '))
+    // {
+    //     if (arr[0][0] == 'X')
+    //     {
+    //         cout << "P1 wins" << endl;
+    //     }
+    //     else
+    //     {
+    //         cout << oponent << " wins" << endl;
+    //     }
+
+    //     return true;
+    // }
+    // else if (((arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2]) || (arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1])) && (arr[1][1] != ' '))
+    // {
+    //     if (arr[1][1] == 'X')
+    //     {
+    //         cout << "P1 wins" << endl;
+    //     }
+    //     else
+    //     {
+    //         cout << oponent << " wins" << endl;
+    //     }
+
+    //     return true;
+    // }
+    // else if (((arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2]) || (arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2])) && (arr[2][2] != ' '))
+    // {
+    //     if (arr[2][2] == 'X')
+    //     {
+    //         cout << "P1 wins" << endl;
+    //     }
+    //     else
+    //     {
+    //         cout << oponent << " wins" << endl;
+    //     }
+    //     return true;
+    // }
+    // else if (((arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2]) || (arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0])) && (arr[1][1] != ' '))
+    // {
+    //     if (arr[1][1] == 'X')
+    //     {
+    //         cout << "P1 wins" << endl;
+    //     }
+    //     else
+    //     {
+    //         cout << oponent << " wins" << endl;
+    //     }
+    //     return true;
+    // }
+    // else
+    // {
+    //     return false;
+    // }
 }
 // Function to print the array in form of a tic tac toe board
 void printArray(char arr[3][3])
@@ -106,102 +153,54 @@ void userPick(char arr[3][3], char user)
 // function to check whether a player is about to win (used by computer)
 string checkPosition(char arr[3][3], char user)
 {
-    if ((arr[0][0] == arr[0][1]) && (arr[0][0] == user) && (arr[0][2] == ' '))
+    for (int i = 0; i < 3; i++)
     {
-        return "02";
+        if (arr[i][0] == arr[i][1] && (arr[i][0] == user) && (arr[i][2] == ' '))
+        {
+            return to_string(i) + "2";
+        }
+        if (arr[i][2] == arr[i][1] && (arr[i][2] == user) && (arr[i][0] == ' '))
+        {
+            return to_string(i) + "0";
+        }
+        if (arr[i][0] == arr[i][2] && (arr[i][0] == user) && (arr[i][1] == ' '))
+        {
+            return to_string(i) + "1";
+        }
+        if (arr[0][i] == arr[1][i] && (arr[0][i] == user) && (arr[2][i] == ' '))
+        {
+            return "2" + to_string(i);
+        }
+        if (arr[2][i] == arr[1][i] && (arr[2][i] == user) && (arr[0][i] == ' '))
+        {
+            return "0" + to_string(i);
+        }
+        if (arr[0][i] == arr[2][i] && (arr[0][i] == user) && (arr[1][i] == ' '))
+        {
+            return "1" + to_string(i);
+        }
     }
-    else if ((arr[0][1] == arr[0][2]) && (arr[0][1] == user) && (arr[0][0] == ' '))
-    {
-        return "00";
-    }
-    else if ((arr[0][0] == arr[0][2]) && (arr[0][0] == user) && (arr[0][1] == ' '))
-    {
-        return "01";
-    }
-    else if ((arr[1][0] == arr[1][1]) && (arr[1][0] == user) && (arr[1][2] == ' '))
-    {
-        return "12";
-    }
-    else if ((arr[1][1] == arr[1][2]) && (arr[1][1] == user) && (arr[1][0] == ' '))
-    {
-        return "10";
-    }
-    else if ((arr[1][0] == arr[1][2]) && (arr[1][0] == user) && (arr[1][1] == ' '))
-    {
-        return "11";
-    }
-    else if ((arr[2][0] == arr[2][1]) && (arr[2][0] == user) && (arr[2][2] == ' '))
-    {
-        return "22";
-    }
-    else if ((arr[2][1] == arr[2][2]) && (arr[2][1] == user) && (arr[2][0] == ' '))
-    {
-        return "20";
-    }
-    else if ((arr[2][0] == arr[2][2]) && (arr[2][0] == user) && (arr[2][1] == ' '))
-    {
-        return "21";
-    }
-    else if ((arr[0][0] == arr[1][0]) && (arr[0][0] == user) && (arr[2][0] == ' '))
-    {
-        return "20";
-    }
-    else if ((arr[1][0] == arr[2][0]) && (arr[1][0] == user) && (arr[0][0] == ' '))
-    {
-        return "00";
-    }
-    else if ((arr[0][0] == arr[2][0]) && (arr[0][0] == user) && (arr[1][0] == ' '))
-    {
-        return "10";
-    }
-    else if ((arr[0][1] == arr[1][1]) && (arr[0][1] == user) && (arr[2][1] == ' '))
-    {
-        return "21";
-    }
-    else if ((arr[1][1] == arr[2][1]) && (arr[1][1] == user) && (arr[0][1] == ' '))
-    {
-        return "01";
-    }
-    else if ((arr[0][1] == arr[2][1]) && (arr[0][1] == user) && (arr[1][1] == ' '))
+    if ((arr[0][0] == arr[2][2] && (arr[0][0] == user) && (arr[1][1] == ' ')) || (arr[0][2] == arr[2][0] && (arr[0][2] == user) && (arr[1][1] == ' ')))
     {
         return "11";
     }
-    else if ((arr[0][2] == arr[1][2]) && (arr[0][2] == user) && (arr[2][2] == ' '))
-    {
-        return "22";
-    }
-    else if ((arr[1][2] == arr[2][2]) && (arr[1][2] == user) && (arr[0][2] == ' '))
-    {
-        return "02";
-    }
-    else if ((arr[0][2] == arr[2][2]) && (arr[0][2] == user) && (arr[1][2] == ' '))
-    {
-        return "12";
-    }
-    else if ((arr[0][0] == arr[1][1]) && (arr[0][0] == user) && (arr[2][2] == ' '))
-    {
-        return "22";
-    }
-    else if ((arr[1][1] == arr[2][2]) && (arr[1][1] == user) && (arr[0][0] == ' '))
+    if (arr[1][1] == arr[2][2] && (arr[1][1] == user) && (arr[0][0] == ' '))
     {
         return "00";
     }
-    else if ((((arr[0][0] == arr[2][2]) && (arr[0][0] == user)) || ((arr[2][0] == arr[0][2]) && (arr[2][0] == user))) && (arr[1][1] == ' '))
+    if (arr[0][0] == arr[1][1] && (arr[0][0] == user) && (arr[2][2] == ' '))
     {
-        return "11";
+        return "22";
     }
-    else if ((arr[0][2] == arr[1][1]) && (arr[0][2] == user) && (arr[2][0] == ' '))
+    if (arr[0][2] == arr[1][1] && (arr[1][1] == user) && (arr[2][0] == ' '))
     {
         return "20";
     }
-    else if ((arr[1][1] == arr[2][0]) && (arr[1][1] == user) && (arr[0][2] == ' '))
+    if (arr[2][0] == arr[1][1] && (arr[2][0] == user) && (arr[0][2] == ' '))
     {
         return "02";
     }
-    else
-    {
-        return "none";
-    }
+    return "none";
 }
 // Function to let the computer pick a position
 void computerPick(char arr[3][3], char user, char opp)
