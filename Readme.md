@@ -1,4 +1,4 @@
-TICTACTOE created by Muhammad Umer Baig umerbaig123 on github
+TICTACTOE created by Muhammad Umer Baig umerbaig123 on github using only iostream library in c++
 
 # Working
 
@@ -21,7 +21,7 @@ this is used by computer to pick position intelligiently.
 
 Code to check for win is inside checkWin
 
-Code to check for draw is inside checkDraw
+Code to check for draw is inside draw function
 
 ## Contributing
 
