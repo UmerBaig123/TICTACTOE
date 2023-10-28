@@ -1,6 +1,21 @@
 #include <iostream>
 using namespace std;
 
+int moves(char arr[3][3])
+{
+    int count = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (arr[i][j] != ' ')
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+}
 // Function to check whether a player has won or not
 bool checkWin(char arr[3][3], string oponent)
 {
@@ -46,6 +61,18 @@ bool checkWin(char arr[3][3], string oponent)
             cout << oponent << " wins" << endl;
         }
 
+        return true;
+    }
+    else if (arr[0][2] == arr[1][1] && arr[2][0] == arr[0][2] && arr[2][0] != ' ')
+    {
+        if (arr[2][0] == 'X')
+        {
+            cout << "P1 wins" << endl;
+        }
+        else
+        {
+            cout << oponent << " wins" << endl;
+        }
         return true;
     }
     else
@@ -96,8 +123,27 @@ void userPick(char arr[3][3], char user)
     }
 }
 // function to check whether a player is about to win (used by computer)
-string checkPosition(char arr[3][3], char user)
+string checkPosition(char arr[3][3], char user, char opp)
 {
+    if (moves(arr) == 1)
+    {
+        if (arr[0][0] == opp)
+        {
+            return "22";
+        }
+        else if (arr[0][2] == opp)
+        {
+            return "20";
+        }
+        else if (arr[2][0] == opp)
+        {
+            return "02";
+        }
+        else if (arr[2][2] == opp)
+        {
+            return "00";
+        }
+    }
     for (int i = 0; i < 3; i++)
     {
         if (arr[i][0] == arr[i][1] && (arr[i][0] == user) && (arr[i][2] == ' '))
@@ -219,22 +265,22 @@ string checkCell(char arr[3][3], char user)
                 }
             }
         }
-        return pos;
     }
+    return pos;
 }
 // Function to let the computer pick a position
 void computerPick(char arr[3][3], char user, char opp)
 {
-    if (checkPosition(arr, user) != "none")
+    if (checkPosition(arr, user, opp) != "none")
     {
-        string pos = checkPosition(arr, user);
+        string pos = checkPosition(arr, user, opp);
         int row = pos[0] - '0';
         int col = pos[1] - '0';
         arr[row][col] = user;
     }
-    else if (checkPosition(arr, opp) != "none")
+    else if (checkPosition(arr, opp, user) != "none")
     {
-        string pos = checkPosition(arr, opp);
+        string pos = checkPosition(arr, opp, user);
         int row = pos[0] - '0';
         int col = pos[1] - '0';
         arr[row][col] = user;
