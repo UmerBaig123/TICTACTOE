@@ -52,61 +52,6 @@ bool checkWin(char arr[3][3], string oponent)
     {
         return false;
     }
-
-    // if (((arr[0][0] == arr[0][1] && arr[0][0] == arr[0][2]) || (arr[0][0] == arr[1][0] && arr[0][0] == arr[2][0])) && (arr[0][0] != ' '))
-    // {
-    //     if (arr[0][0] == 'X')
-    //     {
-    //         cout << "P1 wins" << endl;
-    //     }
-    //     else
-    //     {
-    //         cout << oponent << " wins" << endl;
-    //     }
-
-    //     return true;
-    // }
-    // else if (((arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2]) || (arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1])) && (arr[1][1] != ' '))
-    // {
-    //     if (arr[1][1] == 'X')
-    //     {
-    //         cout << "P1 wins" << endl;
-    //     }
-    //     else
-    //     {
-    //         cout << oponent << " wins" << endl;
-    //     }
-
-    //     return true;
-    // }
-    // else if (((arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2]) || (arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2])) && (arr[2][2] != ' '))
-    // {
-    //     if (arr[2][2] == 'X')
-    //     {
-    //         cout << "P1 wins" << endl;
-    //     }
-    //     else
-    //     {
-    //         cout << oponent << " wins" << endl;
-    //     }
-    //     return true;
-    // }
-    // else if (((arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2]) || (arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0])) && (arr[1][1] != ' '))
-    // {
-    //     if (arr[1][1] == 'X')
-    //     {
-    //         cout << "P1 wins" << endl;
-    //     }
-    //     else
-    //     {
-    //         cout << oponent << " wins" << endl;
-    //     }
-    //     return true;
-    // }
-    // else
-    // {
-    //     return false;
-    // }
 }
 // Function to print the array in form of a tic tac toe board
 void printArray(char arr[3][3])
@@ -202,6 +147,81 @@ string checkPosition(char arr[3][3], char user)
     }
     return "none";
 }
+// Function to check occurence of a character in a cell
+string checkCell(char arr[3][3], char user)
+{
+    string pos = "none";
+    if (arr[1][1] == user)
+    {
+        if (arr[0][0] == ' ' && arr[2][2] == ' ')
+        {
+            return "00";
+        }
+        else if (arr[0][2] == ' ' && arr[2][0] == ' ')
+        {
+            return "20";
+        }
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (arr[i][j] == user)
+            {
+                int count = 0;
+                for (int k = 0; k < 3; k++)
+                {
+                    if (arr[i][k] == ' ')
+                    {
+                        count++;
+                    }
+                }
+                if (count == 2)
+                {
+                    if (j == 0)
+                    {
+                        return to_string(i) + "1";
+                    }
+                    else if (j == 2)
+                    {
+                        return to_string(i) + "0";
+                    }
+                    else
+                    {
+                        return to_string(i) + "2";
+                    }
+                }
+                else
+                {
+                    int count = 0;
+                    for (int k = 0; k < 3; k++)
+                    {
+                        if (arr[k][j] == ' ')
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 2)
+                    {
+                        if (i == 0)
+                        {
+                            return "1" + to_string(i);
+                        }
+                        else if (i == 2)
+                        {
+                            return "0" + to_string(i);
+                        }
+                        else
+                        {
+                            return "2" + to_string(i);
+                        }
+                    }
+                }
+            }
+        }
+        return pos;
+    }
+}
 // Function to let the computer pick a position
 void computerPick(char arr[3][3], char user, char opp)
 {
@@ -219,41 +239,50 @@ void computerPick(char arr[3][3], char user, char opp)
         int col = pos[1] - '0';
         arr[row][col] = user;
     }
-    else if (arr[1][1] == ' ')
+    else if (checkCell(arr, user) != "none")
     {
-        arr[1][1] = user;
+        int row = checkCell(arr, user)[0] - '0';
+        int col = checkCell(arr, user)[1] - '0';
+        arr[row][col] = user;
     }
-    else if (arr[0][0] == ' ')
+    else
     {
-        arr[0][0] = user;
-    }
-    else if (arr[0][2] == ' ')
-    {
-        arr[0][2] = user;
-    }
-    else if (arr[2][0] == ' ')
-    {
-        arr[2][0] = user;
-    }
-    else if (arr[2][2] == ' ')
-    {
-        arr[2][2] = user;
-    }
-    else if (arr[0][1] == ' ')
-    {
-        arr[0][1] = user;
-    }
-    else if (arr[1][0] == ' ')
-    {
-        arr[1][0] = user;
-    }
-    else if (arr[1][2] == ' ')
-    {
-        arr[1][2] = user;
-    }
-    else if (arr[2][1] == ' ')
-    {
-        arr[2][1] = user;
+        if (arr[0][0] == ' ')
+        {
+            arr[0][0] = user;
+        }
+        else if (arr[0][2] == ' ')
+        {
+            arr[0][2] = user;
+        }
+        else if (arr[2][0] == ' ')
+        {
+            arr[2][0] = user;
+        }
+        else if (arr[2][2] == ' ')
+        {
+            arr[2][2] = user;
+        }
+        else if (arr[1][1] == ' ')
+        {
+            arr[1][1] = user;
+        }
+        else if (arr[0][1] == ' ')
+        {
+            arr[0][1] = user;
+        }
+        else if (arr[1][0] == ' ')
+        {
+            arr[1][0] = user;
+        }
+        else if (arr[1][2] == ' ')
+        {
+            arr[1][2] = user;
+        }
+        else if (arr[2][1] == ' ')
+        {
+            arr[2][1] = user;
+        }
     }
 }
 // Function to check whether the game is a draw
