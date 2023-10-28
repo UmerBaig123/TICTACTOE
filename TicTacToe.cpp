@@ -127,21 +127,16 @@ string checkPosition(char arr[3][3], char user, char opp)
 {
     if (moves(arr) == 1)
     {
-        if (arr[0][0] == opp)
+        if (arr[0][0] == opp || arr[0][2] == opp || arr[2][0] == opp || arr[2][2] == opp)
         {
-            return "22";
+            return "11";
         }
-        else if (arr[0][2] == opp)
+    }
+    if (moves(arr) == 3)
+    {
+        if (arr[0][0] == opp && arr[2][2] == opp || arr[0][2] == opp && arr[2][0] == opp)
         {
-            return "20";
-        }
-        else if (arr[2][0] == opp)
-        {
-            return "02";
-        }
-        else if (arr[2][2] == opp)
-        {
-            return "00";
+            return "21";
         }
     }
     for (int i = 0; i < 3; i++)
