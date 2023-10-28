@@ -122,6 +122,44 @@ void userPick(char arr[3][3], char user)
         arr[row - 1][col - 1] = user;
     }
 }
+string checkUser(char arr[3][3], char user)
+{
+    string pos = "";
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (arr[i][j] == user)
+            {
+                pos += to_string(i) + to_string(j);
+            }
+        }
+    }
+    return pos;
+}
+bool isCorner(int row, int col)
+{
+    if (row == 0 && col == 0)
+    {
+        return true;
+    }
+    else if (row == 0 && col == 2)
+    {
+        return true;
+    }
+    else if (row == 2 && col == 0)
+    {
+        return true;
+    }
+    else if (row == 2 && col == 2)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 // function to check whether a player is about to win (used by computer)
 string checkPosition(char arr[3][3], char user, char opp)
 {
@@ -134,9 +172,45 @@ string checkPosition(char arr[3][3], char user, char opp)
     }
     if (moves(arr) == 3)
     {
-        if (arr[0][0] == opp && arr[2][2] == opp || arr[0][2] == opp && arr[2][0] == opp)
+        if ((arr[0][0] == opp && arr[2][2] == opp) || (arr[0][2] == opp && arr[2][0] == opp))
         {
             return "21";
+        }
+        else
+        {
+            string rowcols = checkUser(arr, opp);
+            int row1 = rowcols[0] - '0';
+            int col1 = rowcols[1] - '0';
+            int row2 = rowcols[2] - '0';
+            int col2 = rowcols[3] - '0';
+            if (isCorner(row1, col1) && !isCorner(row2, col2))
+            {
+                if (row1 != row2 && col1 != col2)
+                {
+                    if (row2 == row1 + 1 || row2 == row1 - 1)
+                    {
+                        return to_string(row1) + to_string(col2);
+                    }
+                    else if (col2 == col1 + 1 || col2 == col1 - 1)
+                    {
+                        return to_string(row2) + to_string(col1);
+                    }
+                }
+            }
+            else if (isCorner(row2, col2) && !isCorner(row1, col1))
+            {
+                if (row2 != row1 && col2 != col1)
+                {
+                    if (row1 == row2 + 1 || row1 == row2 - 1)
+                    {
+                        return to_string(row2) + to_string(col1);
+                    }
+                    else if (col1 == col2 + 1 || col1 == col2 - 1)
+                    {
+                        return to_string(row1) + to_string(col2);
+                    }
+                }
+            }
         }
     }
     for (int i = 0; i < 3; i++)

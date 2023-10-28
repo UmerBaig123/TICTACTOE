@@ -1,5 +1,7 @@
 TICTACTOE created by Muhammad Umer Baig umerbaig123 on github using only iostream library in c++
 
+The computer is unbeatable and will always win or draw the game
+
 # Working
 
 Program lets user decide whether they want to play single player or multiplayer
@@ -28,3 +30,5 @@ Code to check for draw is inside draw function
 Pull requests are welcome. Feel free to use this as your own code
 
 Please make sure to update tests as appropriate.
+
+If you were able to beat the computer please let me know how you did it. I would love to know.
