@@ -365,9 +365,9 @@ void computerPick(char arr[3][3], char user, char opp)
     }
     else
     {
-        if (arr[0][0] == ' ')
+        if (arr[1][1] == ' ')
         {
-            arr[0][0] = user;
+            arr[1][1] = user;
         }
         else if (arr[0][2] == ' ')
         {
@@ -381,9 +381,9 @@ void computerPick(char arr[3][3], char user, char opp)
         {
             arr[2][2] = user;
         }
-        else if (arr[1][1] == ' ')
+        else if (arr[0][0] == ' ')
         {
-            arr[1][1] = user;
+            arr[0][0] = user;
         }
         else if (arr[0][1] == ' ')
         {
