@@ -183,6 +183,50 @@ string checkPosition(char arr[3][3], char user, char opp)
             int col1 = rowcols[1] - '0';
             int row2 = rowcols[2] - '0';
             int col2 = rowcols[3] - '0';
+            if (row1 == 2 && col1 == 1)
+            {
+                if (row2 == 1 && col2 == 2)
+                {
+                    return "22";
+                }
+                else if (row2 == 1 && col2 == 0)
+                {
+                    return "20";
+                }
+            }
+            if (row2 == 2 && col2 == 1)
+            {
+                if (row1 == 1 && col1 == 2)
+                {
+                    return "22";
+                }
+                else if (row1 == 1 && col1 == 0)
+                {
+                    return "20";
+                }
+            }
+            if (row1 == 0 && col1 == 1)
+            {
+                if (row2 == 1 && col2 == 0)
+                {
+                    return "00";
+                }
+                else if (row2 == 1 && col2 == 2)
+                {
+                    return "02";
+                }
+            }
+            if (row2 == 0 && col2 == 1)
+            {
+                if (row1 == 1 && col1 == 0)
+                {
+                    return "00";
+                }
+                else if (row1 == 1 && col1 == 2)
+                {
+                    return "02";
+                }
+            }
             if (row1 != 1 && col1 != 1 && row2 != 1 && col2 != 1)
             {
                 if (isCorner(row1, col1) && !isCorner(row2, col2))
