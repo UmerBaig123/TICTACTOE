@@ -346,7 +346,6 @@ void computerPick(char arr[3][3], char user, char opp)
     if (checkPosition(arr, user, opp) != "none")
     {
         string pos = checkPosition(arr, user, opp);
-        cout << pos << endl;
         int row = pos[0] - '0';
         int col = pos[1] - '0';
         arr[row][col] = user;
@@ -354,7 +353,6 @@ void computerPick(char arr[3][3], char user, char opp)
     else if (checkPosition(arr, opp, user) != "none")
     {
         string pos = checkPosition(arr, opp, user);
-        cout << pos << endl;
         int row = pos[0] - '0';
         int col = pos[1] - '0';
         arr[row][col] = user;
