@@ -228,7 +228,7 @@ string checkPosition(char arr[3][3], char user, char opp)
                 }
             }
             cout << "YES" << endl;
-            if (isCorner(row1, col1) && !isCorner(row2, col2))
+            if (isCorner(row1, col1) && !isCorner(row2, col2) && row2 != 1 && col2 != 1)
             {
                 if (row1 != row2 && col1 != col2)
                 {
@@ -238,12 +238,11 @@ string checkPosition(char arr[3][3], char user, char opp)
                     }
                     else if (col2 == col1 + 1 || col2 == col1 - 1)
                     {
-                        cout << "YES" << endl;
                         return to_string(row2) + to_string(col1);
                     }
                 }
             }
-            else if (isCorner(row2, col2) && !isCorner(row1, col1))
+            else if (isCorner(row2, col2) && !isCorner(row1, col1) && row1 != 1 && col1 != 1)
             {
                 if (row2 != row1 && col2 != col1)
                 {
@@ -492,7 +491,7 @@ int main()
                 printArray(arr);
                 while (!checkWin(arr, "Computer") && !draw(arr))
                 {
-                    // system("cls");
+                    system("cls");
                     userPick(arr, users[0]);
                     if (!checkWin(arr, "Computer") && !draw(arr))
                     {
