@@ -450,7 +450,7 @@ int main()
                 printArray(arr);
                 while (!checkWin(arr, "Computer") && !draw(arr))
                 {
-                    // system("cls");
+                    system("cls");
                     userPick(arr, users[0]);
                     if (!checkWin(arr, "Computer") && !draw(arr))
                     {
