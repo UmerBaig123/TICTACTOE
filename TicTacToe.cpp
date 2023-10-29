@@ -228,7 +228,7 @@ string checkPosition(char arr[3][3], char user, char opp)
                 }
             }
             cout << "YES" << endl;
-            if (isCorner(row1, col1) && !isCorner(row2, col2) && row2 != 1 && col2 != 1)
+            if (isCorner(row1, col1) && !isCorner(row2, col2) && (row2 != 1 || col2 != 1))
             {
                 if (row1 != row2 && col1 != col2)
                 {
@@ -242,7 +242,7 @@ string checkPosition(char arr[3][3], char user, char opp)
                     }
                 }
             }
-            else if (isCorner(row2, col2) && !isCorner(row1, col1) && row1 != 1 && col1 != 1)
+            else if (isCorner(row2, col2) && !isCorner(row1, col1) && (row1 != 1 || col1 != 1))
             {
                 if (row2 != row1 && col2 != col1)
                 {
